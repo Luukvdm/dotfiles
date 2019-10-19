@@ -9,10 +9,25 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=
 set clipboard+=unnamedplus
 
+set nowrap
+" Autostart NERDTree
+autocmd vimenter * NERDTree
 
 " Code
 set number
 syntax on
 
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+filetype plugin indent on
+
+colorscheme peaksea
 

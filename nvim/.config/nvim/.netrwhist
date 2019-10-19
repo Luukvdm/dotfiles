@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/luuk/dotfiles/bash'
+let g:netrw_dirhist_4='/home/luuk/dotfiles/bash/.bashrc.d'
+let g:netrw_dirhist_3='/home/luuk/dotfiles/bash'
+let g:netrw_dirhist_2='/home/luuk/dotfiles/bash/.bashrc.d'
+let g:netrw_dirhist_1='/home/luuk/dotfiles/bash'
+let g:netrw_dirhist_0='/home/luuk/dotfiles/nvim/.vim/colors'
+let g:netrw_dirhist_9='/home/luuk/dotfiles/nvim/.vim'
+let g:netrw_dirhist_8='/home/luuk/dotfiles/nvim'
+let g:netrw_dirhist_7='/home/luuk/Code/asptest'
+let g:netrw_dirhist_6='/home/luuk/Code'
