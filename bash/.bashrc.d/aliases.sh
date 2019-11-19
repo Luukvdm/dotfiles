@@ -5,6 +5,7 @@ alias ..='cd ..'
 alias df='df -h'
 alias du='du -ch'
 alias ipp='curl ipinfo.io/ip'
+alias ip='ip -c'
 
 if hash nvim 2>/dev/null; then
 	alias vim='nvim'
