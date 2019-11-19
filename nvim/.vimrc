@@ -16,6 +16,8 @@ autocmd vimenter * NERDTree
 " Code
 set number
 syntax on
+autocmd FileType python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+autocmd FileType sh nnoremap <buffer> <F5> :exec '!bash'   shellescape(@%, 1)<cr>
 
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
