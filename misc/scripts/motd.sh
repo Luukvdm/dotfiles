@@ -7,14 +7,18 @@ LGRAY='\033[0;37m'
 ORANGE='\033[0;33m'
 NC='\033[0m'
 
-echo -e "${RED} _                 _    _            _           _    _              "
-echo -e "| |               | |  ( )          | |         | |  | |             "
-echo -e "| |    _   _ _   _| | _|/ ___     __| | ___  ___| | _| |_ ___  _ __  "
-echo -e "| |   | | | | | | | |/ / / __|   / _\` |/ _ \/ __| |/ / __/ _ \\| '_ \\ "
-echo -e "| |___| |_| | |_| |   <  \__ \  | (_| |  __/\__ \   <| || (_) | |_) |"
-echo -e "\\_____/\\__,_|\\__,_|_|\\_\\ |___/   \__,_|\___||___/_|\_\\\__\___/| .__/ "
-echo -e "                                                              | |    "
-echo -e "                                                              |_|    ${NC}"
+echo -e "${RED}"
+echo "$HOSTNAME" | sed 's/[^-]\+/\L\u&/g' | figlet
+# figlet | echo  "$HOSTNAME" | sed 's/[^_]\+/\L\u&/g'
+echo -e "${NC}"
+# echo -e "${RED} _                 _    _            _           _    _              "
+# echo -e "| |               | |  ( )          | |         | |  | |             "
+# echo -e "| |    _   _ _   _| | _|/ ___     __| | ___  ___| | _| |_ ___  _ __  "
+# echo -e "| |   | | | | | | | |/ / / __|   / _\` |/ _ \/ __| |/ / __/ _ \\| '_ \\ "
+# echo -e "| |___| |_| | |_| |   <  \__ \  | (_| |  __/\__ \   <| || (_) | |_) |"
+# echo -e "\\_____/\\__,_|\\__,_|_|\\_\\ |___/   \__,_|\___||___/_|\_\\\__\___/| .__/ "
+# echo -e "                                                              | |    "
+# echo -e "                                                              |_|    ${NC}"
 
 
 
@@ -23,7 +27,7 @@ PROCCOUNT=`expr $PROCCOUNT - 5`
 GROUPZ=`groups`
 USER=`whoami`
 
-HOSTNAME=`hostname`
+# HOSTNAME=`$HOSTNAME`
 KERNEL=`uname -r`
 DISTRO=`cat /etc/*release | grep "PRETTY_NAME" | cut -d "=" -f 2- | sed 's/"//g'`
 UPTIME=`uptime | sed 's/.*up ([^,]*), .*/1/'`
