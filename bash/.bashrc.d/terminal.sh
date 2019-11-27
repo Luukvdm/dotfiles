@@ -1,9 +1,12 @@
+color='[38;5;4m\]'
+if [ $(id -u) -eq 0 ]; then # root
+	color='[0;31m\]'
+fi
 
-if [ $(id -u) -eq 0 ];
-then # root
-  PS1='\033[0;31m \w\[$(tput sgr0)\] \033[0m'
-else # normal
-  PS1='\033[1;34m \w\[$(tput sgr0)\] \033[0m'
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	PS1="\h \[$(tput bold)\]\[$(tput sgr0)\]\[\033$color~\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+else
+	PS1=" \[$(tput bold)\]\[$(tput sgr0)\]\[\033$color~\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 fi
 
 # Tilix vte thing that doesnt work
