@@ -1,4 +1,4 @@
-pacman -S git
+sudo pacman -S git
 
 # Clone dotfiles to home dir
 mkdir ~/dotfiles
@@ -16,7 +16,7 @@ mv ~/Videos ~/videos
 mkdir ~/code
 
 # Init Stow
-pacman -S stow
+sudo pacman -S stow
 
 # Remove bash files so that stow can replace them
 rm ~/.bash_profile
@@ -26,15 +26,7 @@ rm ~/.config/user-dirs.dirs
 stow -d ~/dotfiles *
 
 # GENERAL
-pacman -S firefox
-pacman -S discord
-pacman -S neovim
-pacman -S vlc
-pacman -S neofetch
-pacman -S tilix
-pacman -S python-nautilus
-pacman -S cmake # <- ook nodig voor CKB-next
-pacman -S python-pip
+sudo pacman -S firefox discord neovim vlc neofetch tilix python-nautilus cmake python-pip
 
 pip install neovim
 
@@ -42,33 +34,29 @@ pip install neovim
 git config --global credential.helper store
 
 # Java
-pacman -S jre8-openjdk-headless
-pacman -S jdk8-openjdk
+sudo pacman -S jre8-openjdk-headless jdk8-openjdk
 
 # Icon pack
-pacman -S papirus-icon-theme
+sudo pacman -S papirus-icon-theme
 
 # AUR
-pacman -S base-devel
+sudo pacman -S base-devel
 
 # FONTS
-pacman -S ttf-opensans
-pacman -S ttf-font-awesome
-pacman -S ttf-roboto
-pacman -S ttf-hack
+sudo pacman -S ttf-opensans ttf-font-awesome ttf-roboto ttf-hack
 
 # Create dir to store cloned git repos
 mkdir ~/to-install
 
 # Corsair CKB-next driver
-pacman -S quazip
+sudo pacman -S quazip
 git clone -q https://aur.archlinux.org/ckb-next.git ~/to-install/ckb-next
 
 # GNOME
-pacman -S gnome-tweaks
+sudo pacman -S gnome-tweaks
 
 # Dash to dock
-pacman -S intltool
+sudo pacman -S intltool
 git clone -q https://aur.archlinux.org/gnome-shell-extension-dash-to-dock.git ~/to-install/dash-to-dock
 #cd gnome-shell-extension-dash-to-dock/
 #makepkg

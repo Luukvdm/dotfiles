@@ -16,8 +16,17 @@ autocmd vimenter * NERDTree
 " Code
 set number
 syntax on
-autocmd FileType python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-autocmd FileType sh nnoremap <buffer> <F5> :exec '!bash'   shellescape(@%, 1)<cr>
+
+augroup execute_mappings
+    autocmd!
+    autocmd FileType python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+    autocmd FileType sh nnoremap <buffer> <F5> :exec '!bash'   shellescape(@%, 1)<cr>
+augroup END
+
+augroup text_mappings
+    autocmd!
+    autocmd FileType html,css,js,python set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+augroup END
 
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
