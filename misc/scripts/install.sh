@@ -1,8 +1,8 @@
 sudo pacman -S git
 
 # Clone dotfiles to home dir
-mkdir ~/dotfiles
-git clone -q https://github.com/Luukvdm/dotfiles ~/dotfiles/
+#mkdir ~/dotfiles
+#git clone -q https://github.com/Luukvdm/dotfiles ~/dotfiles/
 
 # Rename folders in home dir bcz I can
 mv ~/Documents ~/documents
@@ -49,15 +49,15 @@ sudo pacman -S ttf-opensans ttf-font-awesome ttf-roboto ttf-hack
 mkdir ~/to-install
 
 # Corsair CKB-next driver
-sudo pacman -S quazip
-git clone -q https://aur.archlinux.org/ckb-next.git ~/to-install/ckb-next
+#sudo pacman -S quazip
+#git clone -q https://aur.archlinux.org/ckb-next.git ~/to-install/ckb-next
 
 # GNOME
 sudo pacman -S gnome-tweaks
 
 # Dash to dock
 sudo pacman -S intltool
-git clone -q https://aur.archlinux.org/gnome-shell-extension-dash-to-dock.git ~/to-install/dash-to-dock
+#git clone -q https://aur.archlinux.org/gnome-shell-extension-dash-to-dock.git ~/to-install/dash-to-dock
 #cd gnome-shell-extension-dash-to-dock/
 #makepkg
 #pacman -U gnome-shell-extension-dash-to-dock-66+141+g908a050-1-any.pkg.tar.xz

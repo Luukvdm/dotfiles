@@ -38,7 +38,7 @@ DISTRO=`cat /etc/*release | grep "PRETTY_NAME" | cut -d "=" -f 2- | sed 's/"//g'
 UPTIME=`uptime | sed 's/.*up ([^,]*), .*/1/'`
 TIME=`date`
 CPU=`cat /proc/cpuinfo | grep "model name" | cut -d ' ' -f3- | awk {'print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10'} | head -1`
-MEMORY="`free -t -m | grep "Mem" | awk {'print $4'}`MB Available, `free -t -m | grep "Mem" | awk {'print $3'}`MB Used, `free -t -m | grep "Mem" | awk {'print $2'}`MB Total"
+MEMORY="`free -t -m | grep "Mem" | awk {'print $4'}` MB Available, `free -t -m | grep "Mem" | awk {'print $3'}` MB Used, `free -t -m | grep "Mem" | awk {'print $2'}` MB Total"
 
 LASTLOGIN="`last -a luuk | head -2 | awk 'NR==2{print $3,$4,$5,$6}'` from `last -a luuk | head -2 | awk 'NR==2{print $10}'`"
 SESSIONS=`who | grep $USER | wc -l`
