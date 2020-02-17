@@ -7,11 +7,16 @@ alias du='du -ch'
 alias ipp='curl ipinfo.io/ip'
 alias ip='ip -c'
 
-if hash nvim 2>/dev/null; then
+#if type pacman &> /dev/null; then
+    # alias pacman -Syu ='sudo pacman -Syu'
+    # alias pacman -S ='sudo pacman -S'
+#fi
+
+if type nvim &> /dev/null; then
 	alias vim='nvim'
 fi
 
-if hash neofetch 2>/dev/null; then
+if type neofetch &> /dev/null; then
 	alias neofetch='neofetch --ascii ~/.config/neofetch/ascii.txt'
 fi
 
