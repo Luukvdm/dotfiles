@@ -1,0 +1,37 @@
+[alias]
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+
+[http]
+	sslverify = true
+[user]
+	email = 
+	name = 
+	username = Luukvdm
+[github]
+	user = Luukvdm
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[web]
+	browser = firefox
+
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
