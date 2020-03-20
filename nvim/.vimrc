@@ -32,7 +32,7 @@ set smarttab
 set autoindent
 
 " Autostart NERDTree
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 " Open URLs using desktop browser.
 if has('gui_gtk2')
@@ -51,7 +51,7 @@ autocmd FileType sh nnoremap <buffer> <F5> :w<CR>:exec '!bash'       shellescape
 autocmd FileType cs nnoremap <buffer> <F5> :w<CR>:exec '!dotnet run' shellescape(@%,1)<cr>
 
 autocmd BufNewFile,BufRead *.md, *.txt set filetype=markdown
-autocmd BufNewFile,BufRead *.html,*.css,*.js,*.json,*.yml,*.yaml setlocal tabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.html,*.css,*.js,*.json,*.yml,*.yaml,*.xml setlocal tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.go,Makefile,*.cs,*.py,*.java setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 " Highlight TODO in any file.
