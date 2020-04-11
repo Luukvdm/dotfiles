@@ -1,9 +1,6 @@
 [submodule "nvim/.vim/bundle/Vundle.vim"]
     path = nvim/.vim/bundle/Vundle.vim
     url = https://github.com/VundleVim/Vundle.vim
-#[submodule "nvim/.vim/bundle/YouCompleteMe"]
-#    path = nvim/.vim/bundle/YouCompleteMe
-#    url = https://github.com/ycm-core/YouCompleteMe
 [submodule "nvim/.vim/bundle/nerdtree"]
     path = nvim/.vim/bundle/nerdtree
     url = https://github.com/scrooloose/nerdtree
