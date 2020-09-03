@@ -7,4 +7,10 @@ lib.pl
 .DS_Store
 ._.DS_Store
 nvim/.vim/bundle/*
-logs/*
+
+logs/
+system/
+bash/.config/**/system/
+bash/.config/**/plugins/
+bash/.config/**/config/
+
