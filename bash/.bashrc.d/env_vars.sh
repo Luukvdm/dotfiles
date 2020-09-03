@@ -13,9 +13,9 @@ export XDG_CONFIG_DIRS=/etc/xdg
 # Home cleanup
 export BASH_COMPLETION_USER_FILE="$XDG_CONFIG_HOME"/bash-completion/bash_completion
 
-export IDEA_PROPERTIES=~"$XDG_CONFIG_HOME"/intellijdea/idea.properties
-export IDEA_VM_OPTIONS="${XDG_CONFIG_HOME}"/intellij-idea/idea.vmoptions
-export STUDIO_PROPERTIES="$XDG_CONFIG_HOME"/androidstudio/idea.properties
+export IDEA_PROPERTIES="$XDG_CONFIG_HOME"/intellij-idea/idea.properties
+export IDEA_VM_OPTIONS="$XDG_CONFIG_HOME"/intellij-idea/idea.vmoptions
+export STUDIO_PROPERTIES="$XDG_CONFIG_HOME"/android-studio/idea.properties
 export GOLAND_PROPERTIES="$XDG_CONFIG_HOME"/goland/idea.properties
 export RIDER_PROPERTIES="$XDG_CONFIG_HOME"/rider/idea.properties
 
