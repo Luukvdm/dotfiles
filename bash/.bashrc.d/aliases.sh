@@ -6,7 +6,6 @@ alias df='df -h'
 alias du='du -ch'
 alias ipp='curl ipinfo.io/ip'
 alias ip='ip -c'
-alias gitlog='git log --stat --pretty=short --graph'
 alias serve='echo Live on: http://localhost:8000 && python -m http.server && open http://localhost:8000'
 alias aliases='vim ~/dotfiles/bash/.bashrc.d/aliases.sh'
 
