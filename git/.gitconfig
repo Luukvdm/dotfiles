@@ -9,8 +9,10 @@
 	username = Luukvdm
 [github]
 	user = Luukvdm
+[includeIf "gitdir:~/code/school/"]
+	path = ~/code/school/.gitconfig
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [web]
 	browser = firefox
@@ -35,3 +37,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[credential]
+	helper = store

@@ -2,7 +2,6 @@
 " ========
 syntax on
 filetype off
-colorscheme peaksea
 set nocompatible
 set shell=bash
 set tw=0
@@ -83,6 +82,7 @@ command! Widest vertical resize 126
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'morhetz/gruvbox'
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ycm-core/YouCompleteMe'
 Plugin 'sheerun/vim-polyglot'
