@@ -32,3 +32,7 @@ if type neofetch &> /dev/null; then
 	alias neofetch='neofetch --ascii ~/.config/neofetch/ascii.txt'
 fi
 
+if type mvn &> /dev/null; then
+	alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
+fi
+
