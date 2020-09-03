@@ -32,3 +32,8 @@ if type neofetch &> /dev/null; then
 	alias neofetch='neofetch --ascii ~/.config/neofetch/ascii.txt'
 fi
 
+if type docker &> /dev/null; then
+    alias docker='sudo docker '
+    alias dc='sudo docker-compose '
+fi
+
