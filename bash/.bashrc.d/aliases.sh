@@ -37,3 +37,7 @@ if type docker &> /dev/null; then
     alias dc='sudo docker-compose '
 fi
 
+if type mvn &> /dev/null; then
+	alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
+fi
+
