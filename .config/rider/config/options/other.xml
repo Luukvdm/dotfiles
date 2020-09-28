@@ -1,0 +1,30 @@
+<application>
+  <component name="NodeJsLocalInterpreters">
+    <local-interpreter path="/usr/bin/node" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Debug.Allow.Typing" value="true" />
+    <property name="InstalledPluginsSearchHistory" value="/sortBy:downloads" />
+    <property name="KEYMAP" value="search&#10;go" />
+    <property name="MarketplacePluginsSearchHistory" value="/sortBy:downloads&#10;gruvbox&#10;gruv&#10;/sortBy:featured /sortBy:downloads&#10;/sortBy:featured" />
+    <property name="Non.Modal.Commit.Single.Click2" value="true" />
+    <property name="Non.Modal.Commit4" value="true" />
+    <property name="PluginConfigurable.selectionTab" value="1" />
+    <property name="RD.Init.Cfg.2" value="true" />
+    <property name="RD.Init.DialogShown.Ide" value="true" />
+    <property name="RD.Light.Edit.Disabled" value="true" />
+    <property name="RD.Switch.Laf" value="true" />
+    <property name="Tutorials.1" value="true" />
+    <property name="UITheme.relaunch" value="true" />
+    <property name="appcds.runOnSecondStart" value="RD-202.6397.268-3bc846e002c75a610d7a8fdd908a9c5c2e060c53c4929403b36349d6c82e0d27" />
+    <property name="evlsprt3.202" value="15" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/code/personal/LaserPointer" />
+    <property name="ideavim.statistics.timestamp" value="1599138380516" />
+    <property name="ignoreUltimateEdition" value="true" />
+    <property name="last_open_solution_path" value="$USER_HOME$/code/personal/LaserPointer" />
+    <property name="last_opened_file_path" value="$USER_HOME$/code/personal/LaserPointer" />
+    <property name="tasks.pass.word.conversion.enforced" value="true" />
+    <property name="toolwindow.stripes.buttons.info.shown" value="true" />
+    <property name="ts.lib.d.ts.version" value="3.9.5" />
+  </component>
+</application>
