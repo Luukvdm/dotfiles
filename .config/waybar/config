@@ -1,0 +1,60 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+	"custom/music"
+    ],
+    "modules-center": ["sway/window"],
+    "modules-right": [
+        "network",
+	"pulseaudio",
+	"clock"
+    ],
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr} ",
+        "format-disconnected": "Disconnected "
+    },
+
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/music": {
+	"format": " {}",
+	"max-length": 60,
+	"interval": 5,
+	"exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
+	"tooltip": false,
+	"on-click": "playerctl play-pause",
+	"on-scroll-up": "playerctl previous",
+	"on-scroll-down": "playerctl next"
+    },
+    
+    "clock": {
+	"format": "{:%a %d %b %H:%M}",
+	"tooltip": false
+    }
+}

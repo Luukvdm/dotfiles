@@ -14,7 +14,8 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 " Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'ap/vim-css-color'
 call plug#end()
@@ -28,6 +29,7 @@ set nocompatible
 filetype plugin on
 syntax on
 set bg=dark
+let g:airline_theme='base16_gruvbox_dark_hard'
 set encoding=utf-8
 set number relativenumber
 set shell=bash

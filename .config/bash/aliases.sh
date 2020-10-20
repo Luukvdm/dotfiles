@@ -8,7 +8,7 @@ alias \
     ipp='curl ipinfo.io/ip' \
     ip='ip -c' \
     serve='echo Live on: http://localhost:8000 && python -m http.server' \
-    aliases='$EDITOR ~/dotfiles/bash/.bashrc.d/aliases.sh' \
+    aliases='$EDITOR ~/.config/bash/aliases.sh' \
     cp='cp -iv' \
     mv='mv -iv' \
     rm='rm -vI' \
@@ -16,7 +16,7 @@ alias \
 
 alias \
     f='$FILE' \
-    e='$EDITOR'
+    e='exec $EDITOR'
 
 # Systemd aliases
 alias \

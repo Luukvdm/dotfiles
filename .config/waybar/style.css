@@ -1,0 +1,78 @@
+@define-color background #282828;
+@define-color foreground #ebdbb2;
+@define-color black      #222222;
+@define-color yellow     #fabd2f;
+@define-color red        #fb4934;
+@define-color green      #689d6a;
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Hack", "Font Awesome 5 Free Regular", "Font Awesome 5 Free Solid", "Font Awesome 5 Free Brands";
+  font-size: 16px;
+  min-height: 0;
+  color: @foreground;
+}
+
+window#waybar {
+  background: @background;
+  color: @foreground;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+
+  border-bottom: 2px solid @green;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  background: transparent;
+  color: @foreground;
+  border-top: 3px solid @background;
+  border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+  background: @green;
+}
+
+#workspaces button.urgent {
+  border-bottom: 3px solid @yellow;
+}
+
+#mode {
+  background-color: @black;
+  border-top: 3px solid @black;
+  border-bottom: 3px solid @red;
+}
+
+#battery.warning,
+#memory.warning,
+#cpu.warning {
+  border-bottom: 3px solid @yellow;
+}
+
+#battery.critical,
+#memory.critical,
+#cpu.critical {
+  border-bottom: 3px solid @red;
+}
+
+#battery.charging {
+  border-bottom: 3px solid @green;
+}
+
+#mode,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#backlight,
+#battery,
+#clock {
+  padding: 0 6px;
+  margin: 0 10px;
+}
+
+/* #tray {
+  margin-left: -1000000px;
+} */
