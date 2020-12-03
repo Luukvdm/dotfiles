@@ -33,3 +33,13 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
 
+if type sway &> /dev/null; then
+    # If not running interactively, don't do anything
+    [[ $- != *i* ]] && return
+
+    # If running from tty1 start sway
+    if [[ "$(tty)" == "/dev/tty1" ]]; then
+	# https://github.com/systemd/systemd/issues/14489
+	XDG_SESSION_TYPE=wayland _JAVA_AWT_WM_NONREPARENTING=1 exec systemd-cat -t sway sway
+    fi
+fi
