@@ -1,41 +1,48 @@
 [alias]
     mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-
 [http]
-	sslverify = true
+    sslverify = true
 [user]
-	email = <email>
-	name = <name>
-	username = Luukvdm
+    email = luuk.vdm@hotmail.com
+    name = Luuk van den Maagdenberg
+    username = Luukvdm
 [github]
-	user = Luukvdm
+    user = Luukvdm
 [includeIf "gitdir:~/code/school/"]
-	path = ~/code/school/.gitconfig
+    path = ~/code/school/.gitconfig
 [core]
-	editor = nvim
-	excludesfile = ~/.gitignore
+    editor = nvim
+    excludesfile = ~/.gitignore
 [web]
-	browser = firefox
-
+    browser = firefox
 [color]
-	ui = auto
+    ui = auto
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
 [diff]
-	tool = vimdiff
+    tool = nvimdiff
 [difftool]
-	prompt = false
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"REMOTE\""
 [credential]
-	helper = store
+    helper = store
+[pull]
+    rebase = false
+[merge]
+    tool = nvimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
