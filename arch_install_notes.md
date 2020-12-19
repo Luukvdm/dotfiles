@@ -97,6 +97,8 @@ makepkg -si
 **SSD**  
 ```bash
 sudo pacman -S util-linux
+# Check when using disc encryption with dm-crypt
+# https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Discard/TRIM_support_for_solid_state_drives_(SSD)
 sudo systemctl enable fstrim.timer
 ```
 
