@@ -6,22 +6,30 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 " Plug 'vimwiki/vimwiki'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kovetskiy/sxhkd-vim'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Coc and web shizzle
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-vetur', 'coc-prettier', 'coc-eslint', 'coc-css', 'coc-html']
 Plug 'ap/vim-css-color'
 call plug#end()
 
 " Enable deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 "" Some general settings
 nnoremap c "_c
@@ -30,6 +38,7 @@ filetype plugin on
 syntax on
 set bg=dark
 let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline#extensions#tabline#enabled = 1
 set encoding=utf-8
 set number relativenumber
 set shell=bash
@@ -81,6 +90,10 @@ map <leader>f :Goyo \| set bg=dark \| set linebreak<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_us<CR>
+map <leader>i :setlocal spell! spelllang=nl_nl<CR>
+
+" Deselect text
+map <Leader><Space> :noh<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
@@ -104,6 +117,7 @@ autocmd BufNewFile,BufRead *.go,Makefile,*.cs,*.py,*.java setlocal tabstop=4 shi
 
 "" Key mappings
 nnoremap <C-S> :w<CR>
+nmap <leader>p <Plug>MarkdownPreviewToggle
 
 " :Mv {file} -> Rename current file.
 command! -nargs=1 Mv saveas <args> | bd! # | call delete(expand('#'))
@@ -116,4 +130,7 @@ command! Widest vertical resize 126
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
+" Import other config files
+runtime ./coc-config.vim
+runtime fzf.vim
 

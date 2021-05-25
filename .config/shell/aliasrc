@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# General 
+alias \
+    sudo='sudo ' \
+    ls='ls --color=auto' \
+    ..='cd ..' \
+    df='df -h' \
+    du='du -ch' \
+    ipp='curl ipinfo.io/ip' \
+    ip='ip -c' \
+    aliases='$EDITOR ~/.config/shell/aliasrc' \
+    cp='cp -iv' \
+    mv='mv -iv' \
+    rm='rm -vI' \
+    open='xdg-open' \
+    grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+
+# Creates a static server using ruby, php, or python 2 or 3, whichever is
+# available. It support an optional port (default is 8000).
+serve() {
+  local port="${1:-8000}"
+  if type ruby &> /dev/null; then
+    ruby -run -ehttpd . -p$port
+  elif type php &> /dev/null; then
+    php -S localhost:$port
+  elif type python &> /dev/null; then
+    local pythonVer=$(python -c 'import platform; major, _, _ = platform.python_version_tuple(); print(major);')
+    if [ $pythonVer -eq 2 ]; then
+      python -m SimpleHTTPServer $port
+    else
+      python -m http.server $port
+    fi
+  else
+    echo "Error: Ruby, PHP or Python needed"
+  fi
+}
+
+# CTF stuff
+solve() {
+    CUR=$(printf '%s\n' "${PWD##*/}")
+    cd ../
+    mv $CUR ${CUR}_SOLVED
+}
+
+alias \
+    f='$FILE' \
+    e='exec $EDITOR'
+
+# Systemd aliases
+alias \
+    service='systemctl' \
+    userctl='systemctl --user' \
+    restart='service restart' \
+    status='systemctl status' \
+    errors='journalctl -p err..alert --since "24 h ago"'
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+if type git &> /dev/null; then
+	alias g='git'
+	alias gc='git commit'
+	alias gco='git checkout'
+	alias gs='git status -sb'
+	alias delete-merged='git branch --merged | grep -v \* | xargs git branch -D'
+fi
+
+if type docker &> /dev/null; then
+    alias docker='docker '
+    alias dc='docker-compose '
+fi
+
+if type neofetch &> /dev/null; then
+	alias neofetch='neofetch --ascii ~/.config/neofetch/ascii.txt'
+fi
+
+if type mvn &> /dev/null; then
+	alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
+fi
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/config_dirs"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/env_vars"

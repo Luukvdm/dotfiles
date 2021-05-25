@@ -3,8 +3,8 @@
 [http]
     sslverify = true
 [user]
-    email = luuk.vdm@hotmail.com
-    name = Luuk van den Maagdenberg
+    email =
+    name = 
     username = Luukvdm
 [github]
     user = Luukvdm
