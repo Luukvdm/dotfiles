@@ -66,6 +66,12 @@ Enable colors etc.
 vim /etc/pacman.conf
 ```
 
+```conf
+[options]
+Color
+ParallelDownloads = 5
+```
+
 **Reflector**  
 Reflector updates the mirror list automaticly.   
 ```bash
