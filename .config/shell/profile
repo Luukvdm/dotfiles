@@ -29,6 +29,10 @@ fi
 #     PS1=" \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 # fi
 
+if type zsh &> /dev/null; then
+    export ZDOTDIR="$XDG_CONFIG_HOME"/zsh/
+fi
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
