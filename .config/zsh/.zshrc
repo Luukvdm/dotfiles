@@ -1,52 +1,79 @@
-# !/bin/sh
+#!/bin/zsh
 
-if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
-    export TERMINAL="tilix"
-else
-    export TERMINAL="alacritty"
-fi
+export ZSH=$XDG_CONFIG_HOME/oh-my-zsh
+export ZSH_CACHE_DIR=$XDG_CACHE_HOME/oh-my-zsh
 
-export READER="zathura"
-export BROWSER="firefox"
-export EDITOR="nvim"
-export DEFAULT_USER="pengu"
+install-open-zsh()
+{
+    if [ -d "$XDG_CONFIG_HOME/oh-my-zsh-files" ] 
+    then
+	local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# XDG dirs
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
+	# This needs more testing ...
+	# rsync -a $XDG_CONFIG_HOME/oh-my-zsh-files $ZSH
+	# rm -rf $XDG_CONFIG_HOME/oh-my-zsh-files
+	echo Dont forget to move "$XDG_CONFIG_HOME"/oh-my-zsh-files into "$ZSH"
 
-color='\033[38;5;220m\]'
-hostnameColor='\033[38;5;214m\]'
-if [ $(id -u) -eq 0 ]; then # root
-    color='\033[38;5;214m\]'
-fi
-
-# When using ssh
-# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-#     PS1=" \[$(tput sgr0)\]\[$hostnameColor\h\[$(tput sgr0)\] \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
-# else
-#     PS1=" \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
-# fi
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
-
-if type sway &> /dev/null; then
-    export XDG_CURRENT_DESKTOP=sway
-    # source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/config_dirs"
-    # source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/env_vars"
-
-    # If not running interactively, don't do anything
-    [[ $- != *i* ]] && return
-
-    # If running from tty2 start sway
-    if [[ "$(tty)" == "/dev/tty2" ]]; then
-	# https://github.com/systemd/systemd/issues/14489
-	XDG_SESSION_TYPE=wayland _JAVA_AWT_WM_NONREPARENTING=1 exec systemd-cat -t sway sway
+	curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
     fi
+}
+
+install-open-zsh
+
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="dark"
+DISABLE_AUTO_UPDATE="true"
+plugins=(git archlinux)
+
+# Enable colors and change prompt:
+autoload -U colors && colors
+# color='\033[38;5;220m\]'
+#color="#d79921"
+#hostnameColor='\033[38;5;214m\]'
+#if [ $(id -u) -eq 0 ]; then # root
+#    color='\033[38;5;214m\]'
+#fi
+
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#    PS1=" \[$(tput sgr0)\]\[$hostnameColor\h\[$(tput sgr0)\] \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[#96fc07 \[$(tput sgr0)\]"
+#else
+#    PS1=" \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[#d79921 \[$(tput sgr0)\]"
+#fi
+
+# PS1=" \[$(tput sgr0)\]\[$hostnameColor\h\[$(tput sgr0)\] \[$(tput bold)\]\[$(tput sgr0)\]\[$color\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+PS1="%B %{$fg[green]%}%~%{$reset_color%}%b "
+
+setopt autocd		# Automatically cd into typed directory.
+stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt interactive_comments
+
+# Load aliases and shortcuts if existent.
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
+bindkey "\033[1~" beginning-of-line
+bindkey "\033[4~" end-of-line
+
+# zsh parameter completion for the dotnet CLI
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+compctl -K _dotnet_zsh_complete dotnet
+
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+    mkdir $ZSH_CACHE_DIR
 fi
+source $ZSH/oh-my-zsh.sh
 
-source $XDG_CONFIG_HOME/shell/aliasrc
-
+# Load syntax highlighting; should be last.
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
