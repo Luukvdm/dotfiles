@@ -44,9 +44,9 @@ endif
 install: install.deps
 ifeq ($(OS),Darwin)
 	# Ignore linux and sway stuff when on MacOS
-	stow --restow --ignore '($(MAC_IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" --simulate .
+	stow --restow --ignore '($(MAC_IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
 endif
-	stow --restow --ignore '(Makefile|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" --simulate .
+	stow --restow --ignore '(Makefile|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
 	# stow --restow --ignore '($(IGNORE))' --no-folding --dir="${HOME}/dotfiles" .
 
 # Full install packages, oh-my-zsh, dotfiles
@@ -61,5 +61,5 @@ ifneq (, $(shell type apt))
 	sudo apt install sway swaylock waybar wofi mako alacritty pavucontrol xorg-server-xwayland light
 endif
 endif
-	stow --restow --ignore '(Makefile)' --no-folding --dir="${HOME}/dotfiles" --simulate .
+	stow --restow --ignore '(Makefile)' --no-folding --dir="${HOME}/dotfiles" .
 
