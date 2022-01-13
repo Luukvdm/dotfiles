@@ -3,13 +3,31 @@
 export ZSH=$XDG_CONFIG_HOME/oh-my-zsh
 export ZSH_CACHE_DIR=$XDG_CACHE_HOME/oh-my-zsh
 
-if [ ! -d "$ZSH" ]; then
-    local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
-    rm ~/.zshrc
-    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-fi
+#if [ ! -d "$ZSH" ]; then
+#    local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
+#    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+#    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
+#    rm ~/.zshrc
+#    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+#fi
+
+install-oh-my-zsh()
+{
+    if [ -d "$XDG_CONFIG_HOME/oh-my-zsh-files" ] 
+    then
+	local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+	# This needs more testing ...
+	# rsync -a $XDG_CONFIG_HOME/oh-my-zsh-files $ZSH
+	# rm -rf $XDG_CONFIG_HOME/oh-my-zsh-files
+	echo Dont forget to move "$XDG_CONFIG_HOME"/oh-my-zsh-files into "$ZSH"
+
+	curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
+    fi
+}
+
+# install-oh-my-zsh
 
 ZSH_THEME="gruvbox"
 SOLARIZED_THEME="dark"

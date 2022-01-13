@@ -71,6 +71,14 @@ if type docker &> /dev/null; then
     alias dc='docker-compose '
 fi
 
+if type kubectl &> /dev/null; then
+    alias k='kubectl '
+fi
+
+if type minikube &> /dev/null; then
+    alias mk='minikube '
+fi
+
 if type neofetch &> /dev/null; then
 	alias neofetch='neofetch --ascii ~/.config/neofetch/ascii.txt'
 fi
