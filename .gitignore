@@ -14,3 +14,4 @@ bash/.config/**/system/
 bash/.config/**/plugins/
 bash/.config/**/config/
 
+.gituser
