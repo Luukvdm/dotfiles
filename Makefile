@@ -45,9 +45,9 @@ install: install.deps
 ifeq ($(OS),Darwin)
 	# Ignore linux and sway stuff when on MacOS
 	stow --restow --ignore '($(MAC_IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
-endif
+else
 	stow --restow --ignore '(Makefile|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
-	# stow --restow --ignore '($(IGNORE))' --no-folding --dir="${HOME}/dotfiles" .
+endif
 
 # Full install packages, oh-my-zsh, dotfiles
 install.full: | install.deps packages ohmy install
