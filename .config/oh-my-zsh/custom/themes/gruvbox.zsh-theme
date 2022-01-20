@@ -86,11 +86,22 @@ prompt_end() {
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
-# Context: user@hostname (who am I and where am I)
-prompt_context() {
+prompt_ssh() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment 237 7 "%(!.%{%F{3}%}.)%n@%m"
   fi
+}
+
+# Context: user@hostname (who am I and where am I)
+prompt_context() {
+  # if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    # prompt_segment 237 7 "%(!.%{%F{3}%}.)%n@%m"
+  # fi
+  case "$OSTYPE" in
+    darwin*)  OS_LOGO="\ue29e" ;; 
+    linux*)   OS_LOGO="\ue712" ;;
+  esac
+  prompt_segment 237 7 $OS_LOGO
 }
 
 # Git: branch/detached head, dirty status
@@ -229,7 +240,8 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_context
+  prompt_ssh
+  # prompt_context
   prompt_dir
   prompt_git
   prompt_bzr
