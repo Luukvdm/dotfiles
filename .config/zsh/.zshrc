@@ -32,7 +32,11 @@ install-oh-my-zsh()
 ZSH_THEME="gruvbox"
 SOLARIZED_THEME="dark"
 DISABLE_AUTO_UPDATE="true"
-plugins=(git archlinux)
+
+# Need to maybe change between Arch Linux plugin and MacOS plugins depending on OS
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/archlinux
+plugins=(git git-auto-fetch archlinux golang kubectl minikube docker-compose docker)
 
 # Enable colors and change prompt:
 autoload -U colors && colors
