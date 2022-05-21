@@ -6,11 +6,14 @@ end
 
 
 return require("packer").startup(function(use)
-  use "sainnhe/gruvbox-material"
+  -- use "sainnhe/gruvbox-material"
+  use "ellisonleao/gruvbox.nvim"
+  -- use "morhetz/gruvbox"
   use "neovim/nvim-lspconfig"
+
   -- Auto complete
   use "hrsh7th/nvim-cmp"
-  -- use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-nvim-lua"
@@ -26,7 +29,7 @@ return require("packer").startup(function(use)
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
 
-  -- Telescope 
+  -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-rs.nvim"
   use "nvim-telescope/telescope-fzf-writer.nvim"
@@ -49,6 +52,9 @@ return require("packer").startup(function(use)
 
   -- Formatting
   use "sbdchd/neoformat"
+  use "lukas-reineke/indent-blankline.nvim"
+  -- use "godlygeek/tabular"
+  use "editorconfig/editorconfig-vim"
 
   if packer_bootstrap then
     require('packer').sync()

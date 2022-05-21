@@ -177,6 +177,13 @@ For Wayland, set env var.
 export MOZ_ENABLE_WAYLAND=1
 ```
 
+**Neovim**
+Install LSP server:
+```bash
+pacman -S lua-language-server gopls bash-language-server yaml-language-server
+paru -S omnisharp-roslyn
+```
+
 **Stuff**  
 ```bash
 pacman -S light papirus-icon-theme neofetch vlc
