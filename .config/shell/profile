@@ -38,7 +38,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 if type sway &> /dev/null; then
-    export XDG_CURRENT_DESKTOP=sway
     # source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/config_dirs"
     # source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/env_vars"
 
@@ -47,8 +46,9 @@ if type sway &> /dev/null; then
 
     # If running from tty2 start sway
     if [[ "$(tty)" == "/dev/tty2" ]]; then
+    	export XDG_CURRENT_DESKTOP=sway
 	# https://github.com/systemd/systemd/issues/14489
-	XDG_SESSION_TYPE=wayland _JAVA_AWT_WM_NONREPARENTING=1 exec systemd-cat -t sway sway
+	exec systemd-cat -t sway sway
     fi
 fi
 
