@@ -57,6 +57,7 @@ alias \
 
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v bat)" ] && alias cat="bat --paging=never"
 
 if type git &> /dev/null; then
 	alias g='git'
