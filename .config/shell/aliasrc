@@ -88,5 +88,9 @@ if type mvn &> /dev/null; then
 	alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
 fi
 
+if type yarn &> /dev/null; then
+  alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+fi
+
 source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/config_dirs"
 source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/env_vars"
