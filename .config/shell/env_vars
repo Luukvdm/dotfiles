@@ -5,6 +5,10 @@ if type dotnet &> /dev/null; then
     export PATH="$PATH:$HOME/.config/dotnet/.dotnet/tools"
 fi
 
+if type go &> /dev/null; then
+  export PATH="$(go env GOPATH)/bin:$PATH"
+fi
+
 # Only on wayland!
 # if [ -n "$WAYLAND_DISPLAY" ]; then
     export MOZ_ENABLE_WAYLAND=1
