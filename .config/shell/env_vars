@@ -6,6 +6,7 @@ if type dotnet &> /dev/null; then
 fi
 
 if type go &> /dev/null; then
+  export GOPATH=$XDG_DATA_HOME/go
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
 

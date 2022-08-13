@@ -12,7 +12,7 @@ alias \
     aliases='$EDITOR ~/.config/shell/aliasrc' \
     cp='cp -iv' \
     mv='mv -iv' \
-    rm='rm -vI' \
+    srm='rm -vI' \
     open='xdg-open' \
     grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
@@ -69,11 +69,21 @@ fi
 
 if type docker &> /dev/null; then
     alias docker='docker '
+    alias d='docker '
     alias dc='docker-compose '
 fi
 
 if type kubectl &> /dev/null; then
     alias k='kubectl '
+    alias kcc='kubectl config current-context'
+fi
+
+if type kubectx &> /dev/null; then
+  alias kc='kubectx '
+fi
+
+if type terraform &> /dev/null; then
+  alias tf='terraform '
 fi
 
 if type minikube &> /dev/null; then
