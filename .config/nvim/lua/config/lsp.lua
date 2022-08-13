@@ -61,6 +61,10 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+  end
+
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 local nvim_lsp = require('lspconfig')
@@ -98,16 +102,18 @@ nvim_lsp['gopls'].setup {
 
 nvim_lsp.sumneko_lua.setup {
   settings = {
-    diagnostics = {
-      -- Get the language server to recognize the `vim` global
-      globals = {'vim'},
-    },
-    workspace = {
-      -- Make the server aware of Neovim runtime files
-      library = vim.api.nvim_get_runtime_file("", true),
-    },
-    telemetry = {
-      enable = false,
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      }
     }
   }
 }
@@ -117,13 +123,49 @@ nvim_lsp.omnisharp.setup {
   cmd = { "omnisharp", "--languageserver" , "--hostPID", tostring(pid) };
 }
 
+local yaml_attach = function (client, bufnr)
+  on_attach(client, bufnr)
+
+  -- print(vim.bo[bufnr].filetype)
+  print(vim.bo[bufnr].buftype)
+
+  -- vim.diagnostics.disable() -- Temp disable diagnostics to not fuck up helm files
+
+  if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+    vim.diagnostics.disable()
+  end
+end
+
 nvim_lsp.yamlls.setup {
+  on_attach = yaml_attach,
+  filetypes = { "yaml", "yaml.docker-compose", "yml" },
   settings = {
-  redhat = {
-    telemetry = {
-      enabled = false
-    }
-  }
+    redhat = {
+      telemetry = {
+        enabled = false
+      }
+    },
+    yaml = {
+      completion = true,
+      format = {
+        enable = true,
+        singleQuote = false,
+      },
+      schemaStore = {
+        enable = true,
+      },
+      schemas = {
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/master/all.json"] = "/*.k8s.yaml",
+        ["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
+        ["https://json.schemastore.org/chart.json"] = "/chart/*",
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+      }
+    },
+    json = {
+      schemaDownload = {
+        enabled = true
+      },
+    },
   }
 }
 
