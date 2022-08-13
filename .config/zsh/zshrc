@@ -32,7 +32,7 @@ install-oh-my-zsh()
 ZSH_THEME="gruvbox"
 SOLARIZED_THEME="dark"
 DISABLE_AUTO_UPDATE="true"
-plugins=(git archlinux helm minikube kubectl golang)
+plugins=(git archlinux history npm node docker-compose docker helm minikube kubectl golang)
 
 # Enable colors and change prompt:
 autoload -U colors && colors
