@@ -240,7 +240,7 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_ssh
+  # prompt_ssh
   # prompt_context
   prompt_dir
   prompt_git
