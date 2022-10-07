@@ -13,7 +13,12 @@ parser_configs.http = {
 
 require('nvim-treesitter.configs').setup {
 	-- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-	ensure_installed = 'all',
+	ensure_installed = { 'bash', 'css', 'dockerfile',
+                       'go', 'gomod', 'html', 'javascript',
+                       'lua', 'make', 'markdown', 'python',
+                       'vue', 'yaml'
+  },
+  auto_install = true,
 
   highlight = {
 		enable = true,
