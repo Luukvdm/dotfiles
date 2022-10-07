@@ -6,9 +6,7 @@ end
 
 
 return require("packer").startup(function(use)
-  -- use "sainnhe/gruvbox-material"
   use "ellisonleao/gruvbox.nvim"
-  -- use "morhetz/gruvbox"
   use "neovim/nvim-lspconfig"
 
   -- Auto complete

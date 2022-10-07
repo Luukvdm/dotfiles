@@ -8,7 +8,7 @@ require('config.formatting')
 require('config.lsp')
 require('config.telescope')
 require('config.treesitter')
-require('config.windows')
+require('config.gui')
 
 local options = {
   backup = false,                          -- creates a backup file
@@ -63,8 +63,6 @@ g.maplocalleader = "\\",
 -- cmd "set whichwrap+=<,>,[,],h,l"
 -- cmd [[set iskeyword+=-]]
 -- cmd [[set formatoptions-=cro]]
--- cmd [[colorscheme gruvbox-material]]
-cmd([[colorscheme gruvbox]])
 
 cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
