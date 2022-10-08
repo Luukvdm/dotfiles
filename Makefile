@@ -1,4 +1,5 @@
 OS := $(shell uname)
+IGNORE := .gituser|.config/gtk-3.0/servers|.config/rider/system|.config/rider/logs
 MAC_IGNORE := Makefile|environment.d|gtk.*|tilix|user-dirs.dirs
 SWAY_CONFIG := sway|waybar|wofi|alacritty|mako|light|swaylock
 
@@ -41,12 +42,12 @@ endif
 endif
 
 # Install dotfiles with basic dependencies
-install: install.deps
+install: # install.deps
 ifeq ($(OS),Darwin)
 	# Ignore linux and sway stuff when on MacOS
-	stow --restow --ignore '($(MAC_IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
+	stow --restow --ignore '($(IGNORE)|$(MAC_IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
 else
-	stow --restow --ignore '(Makefile|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
+	stow --restow --ignore '(Makefile|$(IGNORE)|$(SWAY_CONFIG))' --no-folding --dir="${HOME}/dotfiles" .
 endif
 
 # Full install packages, oh-my-zsh, dotfiles

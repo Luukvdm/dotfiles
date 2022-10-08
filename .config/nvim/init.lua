@@ -3,9 +3,12 @@ local opt = vim.opt
 local g = vim.g
 
 require('plugins')
-require('config.telescope')
+
 require('config.formatting')
 require('config.lsp')
+require('config.telescope')
+require('config.treesitter')
+require('config.gui')
 
 local options = {
   backup = false,                          -- creates a backup file
@@ -33,6 +36,9 @@ local options = {
   expandtab = true,                        -- convert tabs to spaces
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   tabstop = 2,                             -- insert 2 spaces for a tab
+  foldmethod = 'expr',
+  foldexpr = 'nvim_treesitter#foldexpr()',
+  foldenable = false,
   cursorline = false,                      -- highlight the current line
   number = true,                           -- set numbered lines
   relativenumber = true,                   -- set relative numbered lines
@@ -57,8 +63,6 @@ g.maplocalleader = "\\",
 -- cmd "set whichwrap+=<,>,[,],h,l"
 -- cmd [[set iskeyword+=-]]
 -- cmd [[set formatoptions-=cro]]
--- cmd [[colorscheme gruvbox-material]]
-cmd([[colorscheme gruvbox]])
 
 cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]

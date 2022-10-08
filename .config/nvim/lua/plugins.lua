@@ -6,9 +6,7 @@ end
 
 
 return require("packer").startup(function(use)
-  -- use "sainnhe/gruvbox-material"
   use "ellisonleao/gruvbox.nvim"
-  -- use "morhetz/gruvbox"
   use "neovim/nvim-lspconfig"
 
   -- Auto complete
@@ -47,6 +45,10 @@ return require("packer").startup(function(use)
   use "nvim-treesitter/nvim-treesitter"
   use "nvim-treesitter/playground"
 
+  use "windwp/nvim-ts-autotag"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "b3nj5m1n/kommentary" -- comments
+
   use "ray-x/go.nvim"
   use "neovim/pynvim"
 
@@ -55,6 +57,21 @@ return require("packer").startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   -- use "godlygeek/tabular"
   use "editorconfig/editorconfig-vim"
+
+  -- Windows
+  use {
+    "anuvyklack/windows.nvim",
+    requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require('windows').setup()
+    end
+  }
 
   if packer_bootstrap then
     require('packer').sync()
