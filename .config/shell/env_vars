@@ -10,6 +10,11 @@ if type go &> /dev/null; then
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
 
+if [[ -d "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" ]]
+then
+  export PATH="$PATH:$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
+fi
+
 # Only on wayland!
 # if [ -n "$WAYLAND_DISPLAY" ]; then
     export MOZ_ENABLE_WAYLAND=1
