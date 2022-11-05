@@ -61,14 +61,16 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-  if vim.bo[bufnr].filetype == "go" then
+  local ft = vim.bo[bufnr].filetype
+  if ft == "go" or ft == "lua" then
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   elseif client.server_capabilities.document_formatting then
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.documentRangeFormattingProvider = true
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
   end
 end
@@ -99,6 +101,7 @@ nvim_lsp['gopls'].setup {
 
 -- lua setup
 nvim_lsp.sumneko_lua.setup {
+  on_attach = on_attach,
   settings = require("config.lsp.langs.lua")
 }
 
