@@ -1,4 +1,6 @@
 local cmp = require('cmp')
+local nvim_lsp = require('lspconfig')
+local utils = require('config.lsp.utils')
 
 cmp.setup({
   snippet = {
@@ -59,16 +61,19 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-  -- use lsp powered indentation for gqq and = formatting when available
-  if client.server_capabilities.document_formatting then
+  if vim.bo[bufnr].filetype == "go" then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  elseif client.server_capabilities.document_formatting then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
   end
 end
-local nvim_lsp = require('lspconfig')
 
+-- python and bash setup
 local servers = {
   'pylsp',
   'bashls'
@@ -81,72 +86,36 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- go setup
 nvim_lsp['gopls'].setup {
-  md = {'gopls'},
+  md = { 'gopls' },
   on_attach = on_attach,
   capabilities = capabilities,
-  settings = {
-    gopls = {
-      experimentalPostfixCompletions = true,
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-      },
-      staticcheck = true,
-    },
-  },
+  settings = require("config.lsp.langs.go"),
   init_options = {
     usePlaceholders = true,
   }
 }
 
+-- lua setup
 nvim_lsp.sumneko_lua.setup {
-  settings = {
-    diagnostics = {
-      -- Get the language server to recognize the `vim` global
-      globals = {'vim'},
-    },
-    workspace = {
-      -- Make the server aware of Neovim runtime files
-      library = vim.api.nvim_get_runtime_file("", true),
-    },
-    telemetry = {
-      enable = false,
-    }
-  }
+  settings = require("config.lsp.langs.lua")
 }
 
-local pid = vim.fn.getpid()
+-- csharp setup
 nvim_lsp.omnisharp.setup {
-  cmd = { "omnisharp", "--languageserver" , "--hostPID", tostring(pid) };
+  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) };
 }
 
-local yaml_attach = function(client, bufnr)
-  on_attach(client, bufnr)
-
-  print(vim.bo[bufnr].filetype)
-  vim.diagnostic.disable() -- Temp disable diagnostics to not fuck up helm files
-
-  if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
-    vim.diagnostic.disable()
-  end
-end
-
+-- yaml setup
 nvim_lsp.yamlls.setup {
-  on_attach = yaml_attach,
-  settings = {
-    redhat = {
-      telemetry = {
-        enabled = false
-      }
-    },
-    yaml = {
-      schemas = {
-        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/master/all.json"] = "/*.k8s.yaml",
-        ["https://json.schemastore.org/chart.json"] = "/deployment/helm/*",
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
-      }
-    }
-  }
-}
+  on_attach = function(client, bufnr) 
+    on_attach(client, bufnr)
 
+    if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+      require("utils").notify("Disabling yaml diagnostics", "info", "lsp.lua")
+      vim.diagnostic.disable()
+    end
+  end,
+  settings = require("config.lsp.langs.yaml")
+}

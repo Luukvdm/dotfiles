@@ -1,12 +1,47 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
 
+local function get_config(name)
+  return string.format('require("config.%s")', name)
+end
 
 return require("packer").startup(function(use)
+  -- GUI
   use "ellisonleao/gruvbox.nvim"
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({
+        timeout = 5000,
+      })
+      vim.notify = require("notify")
+    end
+  }
+  use {
+    "anuvyklack/windows.nvim",
+    requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require('windows').setup()
+    end
+  }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    config = get_config("gui.tree"),
+  }
+
   use "neovim/nvim-lspconfig"
 
   -- Auto complete
@@ -49,31 +84,27 @@ return require("packer").startup(function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "b3nj5m1n/kommentary" -- comments
 
-  use "ray-x/go.nvim"
+  -- Coding
+  use {
+    "ray-x/go.nvim",
+    requires = "ray-x/guihua.lua",
+    config = get_config("coding.go"),
+    ft = { "go" }
+  }
   use "neovim/pynvim"
 
   -- Formatting
-  use "sbdchd/neoformat"
+  -- use "sbdchd/neoformat"
   use "lukas-reineke/indent-blankline.nvim"
-  -- use "godlygeek/tabular"
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = get_config("lsp.null-ls"),
+  })
   use "editorconfig/editorconfig-vim"
-
-  -- Windows
-  use {
-    "anuvyklack/windows.nvim",
-    requires = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim"
-    },
-    config = function()
-      vim.o.winwidth = 10
-      vim.o.winminwidth = 10
-      vim.o.equalalways = false
-      require('windows').setup()
-    end
-  }
 
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
+
