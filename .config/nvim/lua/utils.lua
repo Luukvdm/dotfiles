@@ -26,4 +26,37 @@ M.telescope_find_files = function()
   end
 end
 
+-- Map a key with optional options
+M.map = function(mode, keys, action, options)
+  if options == nil then
+    options = {}
+  end
+  vim.api.nvim_set_keymap(mode, keys, action, options)
+end
+
+-- Map a key to a lua callback
+function M.map_lua(mode, keys, action, options)
+  if options == nil then
+    options = {}
+  end
+  vim.api.nvim_set_keymap(mode, keys, "<cmd>lua " .. action .. "<cr>", options)
+end
+
+-- Buffer local mappings
+function M.map_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, action, options)
+end
+
+function M.map_lua_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>lua " .. action .. "<cr>", options)
+end
+
 return M

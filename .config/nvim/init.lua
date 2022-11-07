@@ -28,8 +28,8 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   tabstop = 2, -- insert 2 spaces for a tab
-  foldmethod = 'expr',
-  foldexpr = 'nvim_treesitter#foldexpr()',
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
   foldenable = false,
   cursorline = false, -- highlight the current line
   number = true, -- set numbered lines
@@ -43,28 +43,38 @@ local options = {
   background = "dark",
 }
 
-opt.shortmess:append "c"
+opt.shortmess:append("c")
 
 for k, v in pairs(options) do
   opt[k] = v
 end
 
+-- opt.diffopt:append {"linematch:60"}
+
 g.mapleader = "\\"
-g.maplocalleader = "\\",
+g.maplocalleader =
+  "\\",
+  
+  -- cmd "set whichwrap+=<,>,[,],h,l"
+  -- cmd [[set iskeyword+=-]]
+  -- cmd [[set formatoptions-=cro]]
 
-    -- cmd "set whichwrap+=<,>,[,],h,l"
-    -- cmd [[set iskeyword+=-]]
-    -- cmd [[set formatoptions-=cro]]
+require("plugins")
 
-    require('plugins')
+require("config.lsp.lsp")
+require("config.telescope")
+require("config.treesitter")
+require("config.gui.windows")
 
-require('config.lsp.lsp')
-require('config.telescope')
-require('config.treesitter')
-require('config.gui.windows')
+local utils = require("utils")
 
-cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+-- utils.map("n", "<Up>", [[:echoerr "Do not do that!!"<cr>]], { noremap = true })
+-- utils.map("n", "<Down>", [[:echoerr "Do not do that!!"<cr>]], { noremap = true })
+-- utils.map("n", "<Left>", [[:echoerr "Do not do that!!"<cr>]], { noremap = true })
+-- utils.map("n", "<Right>", [[:echoerr "Do not do that!!"<cr>]], { noremap = true })
+
+cmd([[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]])
+cmd([[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]])
+cmd([[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]])
+cmd([[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]])
+cmd([[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]])
