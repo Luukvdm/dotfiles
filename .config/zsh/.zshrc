@@ -32,11 +32,17 @@ install-oh-my-zsh()
 ZSH_THEME="gruvbox"
 SOLARIZED_THEME="dark"
 DISABLE_AUTO_UPDATE="true"
+GIT_AUTO_FETCH_INTERVAL=1200 # Seconds
 
 # Need to maybe change between Arch Linux plugin and MacOS plugins depending on OS
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/archlinux
-plugins=(git git-auto-fetch archlinux golang kubectl minikube docker-compose docker)
+plugins=(git git-auto-fetch archlinux golang kubectl minikube docker-compose docker httpie)
+
+# Enables more auto complete for docker, but don't remember the space
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Enable colors and change prompt:
 autoload -U colors && colors
