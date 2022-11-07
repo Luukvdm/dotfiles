@@ -17,4 +17,4 @@ require("nvim-tree").setup({
 })
 
 -- keymap.set('n', '<Leader>t', <Cmd>WindowsMaximizeVertically<CR>)
-vim.api.nvim_set_keymap('n', '<Leader>t', [[<Cmd>NvimTreeOpen<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>t", [[<Cmd>NvimTreeToggle<CR>]], { noremap = true, silent = true })
