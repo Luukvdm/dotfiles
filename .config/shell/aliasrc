@@ -76,6 +76,15 @@ fi
 if type kubectl &> /dev/null; then
     alias k='kubectl '
     alias kcc='kubectl config current-context'
+
+    kbb() {
+      NS=${1:=default}
+      echo using namespace \'"$NS"\'
+      kubectl run -n "$NS" busybox --image=busybox -i --tty --restart=Never --command -- /bin/sh
+      echo cleaning up pod ...
+      # kubectl wait --for condition=complete -n "$NS" pod/busybox
+      kubectl delete -n "$NS" pod/busybox
+    }
 fi
 
 if type kubectx &> /dev/null; then
