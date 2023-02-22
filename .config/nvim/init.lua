@@ -64,6 +64,7 @@ require("plugins")
 require("config.lsp.lsp")
 require("config.telescope")
 require("config.treesitter")
+require("config.formatting")
 require("config.gui.windows")
 
 local utils = require("utils")
