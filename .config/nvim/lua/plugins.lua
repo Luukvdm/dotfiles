@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap =
+  local packer_bootstrap =
     fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 end
 
@@ -110,7 +110,6 @@ return require("packer").startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { { "nvim-lua/plenary.nvim" } },
-    config = get_config("lsp.null-ls"),
   })
   use("editorconfig/editorconfig-vim")
 
