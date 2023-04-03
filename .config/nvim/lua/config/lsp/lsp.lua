@@ -65,11 +65,11 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
-
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   local ft = vim.bo[bufnr].filetype
   if client.server_capabilities.document_formatting then
@@ -83,6 +83,7 @@ end
 local servers = {
   "pylsp",
   "bashls",
+  "marksman",
 }
 
 for _, lsp in ipairs(servers) do
