@@ -53,3 +53,6 @@ if type sway &> /dev/null; then
 fi
 
 source $XDG_CONFIG_HOME/shell/aliasrc
+
+mkdir -p $XDG_CONFIG_HOME/shell/secret
+for f in $XDG_CONFIG_HOME/shell/secret/*; do source $f; done
