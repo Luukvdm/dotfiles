@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# General 
+# General
 alias \
     sudo='sudo ' \
     ls='ls --color=auto' \
@@ -96,6 +96,9 @@ if type kubectl &> /dev/null; then
 fi
 
 if type kubectx &> /dev/null; then
+  if ! type fzf &> /dev/null; then
+    echo "You should install fzf!"
+  fi
   alias kc='kubectx '
 fi
 
