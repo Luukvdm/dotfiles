@@ -3,19 +3,14 @@
 export ZSH=$XDG_CONFIG_HOME/oh-my-zsh
 export ZSH_CACHE_DIR=$XDG_CACHE_HOME/oh-my-zsh
 
-#if [ ! -d "$ZSH" ]; then
-#    local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
-#    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-#    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
-#    rm ~/.zshrc
-#    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-#fi
+OMZ_CUSTOM="$ZSH"/custom
 
+# fixme
 install-oh-my-zsh()
 {
-  if [ -d "$XDG_CONFIG_HOME/oh-my-zsh-files" ] 
+  if [ -d "$XDG_CONFIG_HOME/oh-my-zsh-files" ]
   then
-	  local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git} 
+	  local REMOTE=${REMOTE:-ssh://git@github.com/${REPO}.git}
 	  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 	  # This needs more testing ...
@@ -26,6 +21,15 @@ install-oh-my-zsh()
 	  curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
   fi
 }
+
+if [ ! -f "$OMZ_CUSTOM/themes/gruvbox.zsh-theme" ]; then
+  curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > $ZSH/custom/themes/gruvbox.zsh-theme
+fi
+
+if [ ! -d "$OMZ_CUSTOM/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${OMZ_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
 
 # install-oh-my-zsh
 
