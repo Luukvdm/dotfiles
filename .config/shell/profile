@@ -52,4 +52,5 @@ if type sway &> /dev/null; then
     fi
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
 source $XDG_CONFIG_HOME/shell/aliasrc
