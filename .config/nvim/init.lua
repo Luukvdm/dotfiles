@@ -54,18 +54,17 @@ end
 g.mapleader = "\\"
 g.maplocalleader =
   "\\",
-  
   -- cmd "set whichwrap+=<,>,[,],h,l"
   -- cmd [[set iskeyword+=-]]
   -- cmd [[set formatoptions-=cro]]
-
-require("plugins")
+  require("plugins")
 
 require("config.lsp.lsp")
 require("config.telescope")
 require("config.treesitter")
 require("config.formatting")
 require("config.gui.windows")
+require("config.gui.general")
 
 local utils = require("utils")
 

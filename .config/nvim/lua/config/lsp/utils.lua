@@ -1,6 +1,6 @@
 M = {}
 
-DIAGNOSTICS_ACTIVE = true -- must be global since the toggle function is called in which.lua
+--[[ DIAGNOSTICS_ACTIVE = true -- must be global since the toggle function is called in which.lua
 -- toggle diagnostics line
 M.toggle_diagnostics = function()
   DIAGNOSTICS_ACTIVE = not DIAGNOSTICS_ACTIVE
@@ -9,8 +9,7 @@ M.toggle_diagnostics = function()
   else
     vim.diagnostic.hide()
   end
-end
-
+end ]]
 AUTOFORMAT_ACTIVE = true
 -- toggle null-ls's autoformatting
 M.toggle_autoformat = function()
