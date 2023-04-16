@@ -41,14 +41,22 @@ return require("packer").startup(function(use)
     },
     config = get_config("gui.tree"),
   })
-  use({
+  --[[ use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
     end,
-  })
+  }) ]]
   use("RRethy/vim-illuminate")
-  use("m4xshen/smartcolumn.nvim")
+  use({
+    "m4xshen/smartcolumn.nvim",
+    conifg = function()
+      local config = {
+        scope = "file",
+      }
+      require("smartcolumn").setup(config)
+    end,
+  })
 
   use("neovim/nvim-lspconfig")
 
