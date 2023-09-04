@@ -57,6 +57,29 @@ return require("packer").startup(function(use)
       require("smartcolumn").setup(config)
     end,
   })
+  use({
+    "petertriho/nvim-scrollbar",
+    requires = {
+      -- "kevinhwang91/nvim-hlslens",
+      "lewis6991/gitsigns.nvim",
+    },
+    config = function()
+      require("scrollbar").setup({
+        excluded_buftypes = {
+          -- "terminal",
+          "nofile",
+        },
+        excluded_filetypes = {
+          --[[ "cmp_docs",
+          "cmp_menu",
+          "noice",
+          "prompt",
+          "TelescopePrompt", ]]
+          "NvimTree",
+        },
+      })
+    end,
+  })
 
   use("neovim/nvim-lspconfig")
 
@@ -105,6 +128,7 @@ return require("packer").startup(function(use)
   -- Tree Sitter
   use("nvim-treesitter/nvim-treesitter")
   use("nvim-treesitter/playground")
+  use("nvim-treesitter/nvim-treesitter-context")
 
   use("windwp/nvim-ts-autotag")
   use("JoosepAlviste/nvim-ts-context-commentstring")
